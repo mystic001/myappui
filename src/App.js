@@ -1,22 +1,21 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react'
 import './App.css';
 
 function App() {
+  const [songs, setSongs] = useState([])
+  useEffect(() => {
+    fetch('http://localhost:4000/')
+      .then(res => res.json())
+      .then(data => setSongs(data))
+  }, [])
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Trending Songs</h1>
+        {songs && songs.map(song => (
+          <div key={song.id}>{song.title}</div>
+        ))}
       </header>
     </div>
   );
