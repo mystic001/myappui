@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   const [songs, setSongs] = useState([])
   useEffect(() => {
-    fetch('http://localhost:4000/')
+    fetch('http://localhost:4000/trending')
       .then(res => res.json())
       .then(data => setSongs(data))
   }, [])
